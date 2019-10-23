@@ -5,8 +5,13 @@
  */
 package web;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.SimpleFormController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import domain.User;
 import service.UserService;
@@ -15,22 +20,27 @@ import service.UserService;
  *
  * @author Danny
  */
-public class UserController extends SimpleFormController {
+@Controller
+@RequestMapping("/userRegistration.htm")
+@SessionAttributes("user")
+public class UserController {
     private UserService userService;
 
-    public UserController()	{
-        setCommandClass(User.class);
-        setCommandName("user");
-    }
-
+    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
-    @Override
-    protected ModelAndView onSubmit(Object command) throws Exception {
-        User user = (User) command;
+    @RequestMapping(method = RequestMethod.GET)
+    public String showUserForm(ModelMap model)	{
+        User user = new User();
+        model.addAttribute(user);
+        return "userForm";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String onSubmit(@ModelAttribute("user") User user) {
         userService.add(user);
-        return new ModelAndView("userSuccess","user",user);
-    }    
+        return "redirect:userSuccess.htm";
+    }  
 }
