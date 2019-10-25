@@ -13,4 +13,10 @@
         <property name="suffix" value=".jsp" />
     </bean>
  
+    <bean id="userService" class="graduaat.it.www.beans.mavenspring.service.UserServiceImplementation" />
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+
 </beans>
