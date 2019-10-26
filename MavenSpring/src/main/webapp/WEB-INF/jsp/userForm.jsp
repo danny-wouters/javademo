@@ -12,7 +12,7 @@
 <title>Registration Page</title>
 </head>
 <body>
-<form:form method="POST" commandName="user">
+<form:form method="POST" modelAttribute="user" commandName="user">
 <table>
     <tr>
         <td>User Name :</td>
@@ -21,6 +21,9 @@
     <tr>
         <td>Password :</td>
         <td><form:password path="password" /></td>
+        <td colspan="2">
+            <form:errors path="password" />
+        </td>
     </tr>
     <tr>
         <td>Gender :</td>

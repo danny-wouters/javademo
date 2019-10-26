@@ -5,12 +5,16 @@
  */
 package graduaat.it.www.beans.mavenspring.domain;
 
+import java.io.Serializable;
+import javax.validation.constraints.Size;
+
 /**
  *
  * @author Danny
  */
-public class User {
+public class User implements Serializable{
     private String name;
+    @Size(min=6, message="Password must have at least 6 characters")
     private String password;
     private String gender;
     private String country;
