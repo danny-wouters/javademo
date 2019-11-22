@@ -25,8 +25,10 @@
     <tr>
         <td>Gender :</td>
         <td>
-        	<form:radiobutton path="gender" value="M" label="M" /> 
+            <form:radiobutton path="gender" value="M" label="M" /> 
             <form:radiobutton path="gender" value="F" label="F" />
+            <form:radiobutton path="gender" value="X" label="X" />
+            <form:radiobutton path="gender" value="O" label="Other" />
         </td>
     </tr>
     <tr>
